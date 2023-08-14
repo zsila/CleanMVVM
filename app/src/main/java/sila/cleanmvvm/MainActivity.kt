@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import sila.cleanmvvm.feature_dictionary.presentation.ShowProgressCircle
 import sila.cleanmvvm.feature_dictionary.presentation.WordInfoItem
 import sila.cleanmvvm.feature_dictionary.presentation.WordInfoViewModel
 import sila.cleanmvvm.ui.theme.CleanMVVMTheme
@@ -72,6 +73,9 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                             Spacer(modifier = Modifier.height(16.dp))
+                            if(wordInfoState.isLoading) {
+                                ShowProgressCircle()
+                            }
                             LazyColumn(
                                 modifier = Modifier.fillMaxSize()) {
                                 items(wordInfoState.wordInfoList.size) { i ->
